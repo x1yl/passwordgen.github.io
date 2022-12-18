@@ -1,83 +1,82 @@
 <!DOCTYPE html>
+<html>
 <head>
   <title>Password Generator</title>
 </head>
 <body>
-  <form id="generator-form">
+  <h1>Password Generator</h1>
+  <form>
     <label for="length">Length:</label>
-    <input type="number" id="length" name="length" value="16">
+    <input type="text" id="length" name="length">
     <br>
     <label for="amount">Amount:</label>
-    <input type="number" id="amount" name="amount" value="1">
+    <input type="text" id="amount" name="amount">
     <br>
-    <label for="include">Include Symbols:</label>
-    <select id="include" name="include">
-      <option value="y">Yes</option>
-      <option value="n">No</option>
-    </select>
+    <label for="include">Include symbols:</label>
+    <input type="checkbox" id="include" name="include" value="y">
     <br>
-    <input type="submit" value="Generate">
+    <button type="button" onclick="generatePasswords()">Generate</button>
   </form>
-  <div id="passwords"></div>
+  <div id="output"></div>
   <script>
     function combineCharacters(strings, length=16) {
-      let combinedString = "";
-      let characters = [];
-      if (lengths) {
-        length = parseInt(lengths);
-      }
-      let includedStrings = [];
-      for (let string of strings) {
-        if (string === "!@#$%&?") {
-          if (include.toLowerCase() === "y" || include === "") {
-            for (let character of string) {
-              characters.push(character);
-            }
-            includedStrings.push(string);
-          }
-        } else if (string !== "!@#$%^&*()") {
-          for (let character of string) {
-            characters.push(character);
-          }
-          includedStrings.push(string);
+  let combinedString = "";
+  let characters = [];
+  if (lengths) {
+    length = parseInt(lengths);
+  }
+  let includedStrings = [];
+  for (let string of strings) {
+    if (string === "!@#$%&?") {
+      if (include.toLowerCase() === "y" || include === "") {
+        for (let character of string) {
+          characters.push(character);
         }
+        includedStrings.push(string);
       }
-      if (length > characters.length) {
-        return combinedString;
+    } else if (string !== "!@#$%^&*()") {
+      for (let character of string) {
+        characters.push(character);
       }
-      while (combinedString.length < length) {
-        index = Math.floor(Math.random() * characters.length);
-        combinedString += characters[index];
-        characters.splice(index, 1);
-      }
-      for (let string of includedStrings) {
-        if (!combinedString.includes(string)) {
-          index = Math.floor(Math.random() * combinedString.length);
-          combinedString =
-            combinedString.slice(0, index) + string[0] + combinedString.slice(index + 1);
-          break;
-        }
-      }
-      return combinedString.slice(0, length);
+      includedStrings.push(string);
     }
+  }
+  if (length > characters.length) {
+    return combinedString;
+  }
+  while (combinedString.length < length) {
+    index = Math.floor(Math.random() * characters.length);
+    combinedString += characters[index];
+    characters.splice(index, 1);
+  }
+  for (let string of includedStrings) {
+    if (!combinedString.includes(string)) {
+      index = Math.floor(Math.random() * combinedString.length);
+      combinedString =
+        combinedString.slice(0, index) + string[0] + combinedString.slice(index + 1);
+      break;
+    }
+  }
+  return combinedString.slice(0, length);
+}
 
-    const generatorForm = document.getElementById('generator-form');
-    const passwordsDiv = document.getElementById('passwords');
+strings = ["!@#$%&?", "qwertyuiopasdfghjklzxcvbnm", "QWERTYUIOPASDFGHJKLZXCVBNM", "1234567890"];
 
-    generatorForm.addEventListener('submit', (event) => {
-      event.preventDefault();
+    function generatePasswords() {
+      // Get the values of the form fields
+      let length = document.getElementById('length').value;
+      let amount = document.getElementById('amount').value;
+      let include = document.getElementById('include').checked ? 'y' : 'n';
 
-      const length = document.getElementById('length').value;
-      const amount = document.getElementById('amount').value;
-      const include = document.getElementById('include').value;
-
-      let passwords = '';
+      // Generate the passwords and append them to the output div
+      let outputDiv = document.getElementById('output');
       for (let i = 0; i < amount; i++) {
-        const password = combineCharacters(strings, length, include);
-        passwords += `<p>${password}</p>`;
+        let combinedString = combineCharacters(strings, length, include);
+        let passwordElement = document.createElement('div');
+        passwordElement.innerText = combinedString;
+        outputDiv.appendChild(passwordElement);
       }
-      passwordsDiv.innerHTML = passwords;
-    });
+    }
   </script>
 </body>
 </html>

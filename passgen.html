@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+  <title>Password Generator</title>
+</head>
+<body>
+  <form id="generator-form">
+    <label for="length">Length:</label>
+    <input type="number" id="length" name="length" value="16">
+    <br>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" value="1">
+    <br>
+    <label for="include">Include Symbols:</label>
+    <select id="include" name="include">
+      <option value="y">Yes</option>
+      <option value="n">No</option>
+    </select>
+    <br>
+    <input type="submit" value="Generate">
+  </form>
+  <div id="passwords"></div>
+  <script>
+    function combineCharacters(strings, length=16) {
+      let combinedString = "";
+      let characters = [];
+      if (lengths) {
+        length = parseInt(lengths);
+      }
+      let includedStrings = [];
+      for (let string of strings) {
+        if (string === "!@#$%&?") {
+          if (include.toLowerCase() === "y" || include === "") {
+            for (let character of string) {
+              characters.push(character);
+            }
+            includedStrings.push(string);
+          }
+        } else if (string !== "!@#$%^&*()") {
+          for (let character of string) {
+            characters.push(character);
+          }
+          includedStrings.push(string);
+        }
+      }
+      if (length > characters.length) {
+        return combinedString;
+      }
+      while (combinedString.length < length) {
+        index = Math.floor(Math.random() * characters.length);
+        combinedString += characters[index];
+        characters.splice(index, 1);
+      }
+      for (let string of includedStrings) {
+        if (!combinedString.includes(string)) {
+          index = Math.floor(Math.random() * combinedString.length);
+          combinedString =
+            combinedString.slice(0, index) + string[0] + combinedString.slice(index + 1);
+          break;
+        }
+      }
+      return combinedString.slice(0, length);
+    }
+
+    const generatorForm = document.getElementById('generator-form');
+    const passwordsDiv = document.getElementById('passwords');
+
+    generatorForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const length = document.getElementById('length').value;
+      const amount = document.getElementById('amount').value;
+      const include = document.getElementById('include').value;
+
+      let passwords = '';
+      for (let i = 0; i < amount; i++) {
+        const password = combineCharacters(strings, length, include);
+        passwords += `<p>${password}</p>`;
+      }
+      passwordsDiv.innerHTML = passwords;
+    });
+  </script>
+</body>
+</html>

@@ -1,82 +1,78 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Password Generator</title>
-</head>
-<body>
-  <h1>Password Generator</h1>
-  <form>
-    <label for="length">Length:</label>
-    <input type="text" id="length" name="length">
-    <br>
-    <label for="amount">Amount:</label>
-    <input type="text" id="amount" name="amount">
-    <br>
-    <label for="include">Include symbols:</label>
-    <input type="checkbox" id="include" name="include" value="y">
-    <br>
-    <button type="button" onclick="generatePasswords()">Generate</button>
-  </form>
-  <div id="output"></div>
-  <script>
-    function combineCharacters(strings, length=16) {
-  let combinedString = "";
-  let characters = [];
-  if (lengths) {
-    length = parseInt(lengths);
-  }
-  let includedStrings = [];
-  for (let string of strings) {
-    if (string === "!@#$%&?") {
-      if (include.toLowerCase() === "y" || include === "") {
-        for (let character of string) {
-          characters.push(character);
+  <head>
+    <title>Password Generator</title>
+  </head>
+  <body>
+    <h1>Welcome to your (extremely basic) password generator!</h1>
+    <form id="passwordForm">
+      <label for="length">Enter the length of the password (press enter for 16):</label>
+      <input type="number" id="length" name="length" value="16">
+      <br>
+      <label for="amount">Enter the amount of passwords (press enter for 1):</label>
+      <input type="number" id="amount" name="amount" value="1">
+      <br>
+      <label for="include">Include symbols? (y/n) (press enter for yes):</label>
+      <input type="text" id="include" name="include">
+      <br>
+      <button type="submit">Generate Password(s)</button>
+    </form>
+    <div id="output"></div>
+    <script>
+      function combineCharacters(strings, length=16) {
+        let combinedString = "";
+        let characters = [];
+        if (lengths) {
+          length = parseInt(lengths);
         }
-        includedStrings.push(string);
+        let includedStrings = [];
+        for (let string of strings) {
+          if (string === "!@#$%&?") {
+            if (include.toLowerCase() === "y" || include === "") {
+              for (let character of string) {
+                characters.push(character);
+              }
+              includedStrings.push(string);
+            }
+          } else if (string !== "!@#$%^&*()") {
+            for (let character of string) {
+              characters.push(character);
+            }
+            includedStrings.push(string);
+          }
+        }
+        if (length > characters.length) {
+          return combinedString;
+        }
+        while (combinedString.length < length) {
+          index = Math.floor(Math.random() * characters.length);
+          combinedString += characters[index];
+          characters.splice(index, 1);
+        }
+        for (let string of includedStrings) {
+          if (!combinedString.includes(string)) {
+            index = Math.floor(Math.random() * combinedString.length);
+            combinedString =
+              combinedString.slice(0, index) + string[0] + combinedString.slice(index + 1);
+            break;
+          }
+        }
+        return combinedString.slice(0, length);
       }
-    } else if (string !== "!@#$%^&*()") {
-      for (let character of string) {
-        characters.push(character);
-      }
-      includedStrings.push(string);
-    }
-  }
-  if (length > characters.length) {
-    return combinedString;
-  }
-  while (combinedString.length < length) {
-    index = Math.floor(Math.random() * characters.length);
-    combinedString += characters[index];
-    characters.splice(index, 1);
-  }
-  for (let string of includedStrings) {
-    if (!combinedString.includes(string)) {
-      index = Math.floor(Math.random() * combinedString.length);
-      combinedString =
-        combinedString.slice(0, index) + string[0] + combinedString.slice(index + 1);
-      break;
-    }
-  }
-  return combinedString.slice(0, length);
-}
-
-strings = ["!@#$%&?", "qwertyuiopasdfghjklzxcvbnm", "QWERTYUIOPASDFGHJKLZXCVBNM", "1234567890"];
-
-    function generatePasswords() {
-      // Get the values of the form fields
-      let length = document.getElementById('length').value;
-      let amount = document.getElementById('amount').value;
-      let include = document.getElementById('include').checked ? 'y' : 'n';
-
-      // Generate the passwords and append them to the output div
-      let outputDiv = document.getElementById('output');
-      for (let i = 0; i < amount; i++) {
-        let combinedString = combineCharacters(strings, length, include);
-        let passwordElement = document.createElement('div');
-        passwordElement.innerText = combinedString;
-        outputDiv.appendChild(passwordElement);
-      }
-    }
-  </script>
-</body>
+      
+      document.querySelector("#passwordForm").addEventListener("submit", event => {
+        event.preventDefault();
+        const form = event.target;
+        const length = form.elements.length.value;
+        const amount = form.elements.amount.value;
+        const include = form.elements.include.value;
+        let passwords = "";
+        for (let i = 0; i < amount; i++) {
+          combinedString = combineCharacters(strings);
+          passwords += combinedString + "<br>";
+        }
+        document.querySelector("#output").innerHTML = passwords;
+      });
+    </script>
+  </body>
 </html>

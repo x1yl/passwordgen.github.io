@@ -19,7 +19,7 @@
     </form>
     <div id="output"></div>
     <script>
-      const strings = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "0123456789", "!@#$%^&*()"];
+      const strings = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "0123456789", "!@#$%&?"];
       
       function combineCharacters(strings, length, include) {
         let combinedString = "";
@@ -33,7 +33,8 @@
               }
               includedStrings.push(string);
             }
-          } else if (string !== "!@#$%^&*()") {
+          }
+          if (string !== "!@#$%&?") {
             for (let character of string) {
               characters.push(character);
             }

@@ -19,12 +19,11 @@
     </form>
     <div id="output"></div>
     <script>
-      function combineCharacters(strings, length=16) {
+      const strings = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "0123456789", "!@#$%^&*()"];
+      
+      function combineCharacters(strings, length, include) {
         let combinedString = "";
         let characters = [];
-        if (lengths) {
-          length = parseInt(lengths);
-        }
         let includedStrings = [];
         for (let string of strings) {
           if (string === "!@#$%&?") {
@@ -44,6 +43,7 @@
         if (length > characters.length) {
           return combinedString;
         }
+        let index;
         while (combinedString.length < length) {
           index = Math.floor(Math.random() * characters.length);
           combinedString += characters[index];
@@ -67,8 +67,8 @@
         const amount = form.elements.amount.value;
         const include = form.elements.include.value;
         let passwords = "";
-        for (let i = 0; i < amount; i++) {
-          combinedString = combineCharacters(strings);
+                for (let i = 0; i < amount; i++) {
+          combinedString = combineCharacters(strings, length, include);
           passwords += combinedString + "<br>";
         }
         document.querySelector("#output").innerHTML = passwords;

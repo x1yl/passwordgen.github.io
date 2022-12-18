@@ -5,75 +5,74 @@
   </head>
   <body>
     <h1>Welcome to your (extremely basic) password generator!</h1>
-    <form id="passwordForm">
-      <label for="length">Enter the length of the password (press enter for 16):</label>
-      <input type="number" id="length" name="length" value="16">
-      <br>
-      <label for="amount">Enter the amount of passwords (press enter for 1):</label>
-      <input type="number" id="amount" name="amount" value="1">
-      <br>
-      <label for="include">Include symbols? (y/n) (press enter for yes):</label>
-      <input type="text" id="include" name="include">
-      <br>
-      <button type="submit">Generate Password(s)</button>
-    </form>
+	<button type="button" id="button" onclick="generate()">Generate password</button>
     <div id="output"></div>
+    <div id="Copied"></div>
     <script>
-      const strings = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "0123456789", "!@#$%&?"];
-      
-      function combineCharacters(strings, length, include) {
-        let combinedString = "";
-        let characters = [];
-        let includedStrings = [];
-        for (let string of strings) {
-          if (string === "!@#$%&?") {
-            if (include.toLowerCase() === "y" || include === "") {
+      function generate(){
+        function combineCharacters(strings, length=16) {
+          let combinedString = "";
+          let characters = [];
+          if (lengths) {
+            length = parseInt(lengths);
+          }
+          let includedStrings = [];
+          for (let string of strings) {
+            if (string === "!@#$%&?") {
+              if (include.toLowerCase() === "y" || include === "") {
+                for (let character of string) {
+                  characters.push(character);
+                }
+                includedStrings.push(string);
+              }
+            } else if (string !== "!@#$%^&*()") {
               for (let character of string) {
                 characters.push(character);
               }
               includedStrings.push(string);
             }
           }
-          if (string !== "!@#$%&?") {
-            for (let character of string) {
-              characters.push(character);
+          if (length > characters.length) {
+            return combinedString;
+          }
+          while (combinedString.length < length) {
+            index = Math.floor(Math.random() * characters.length);
+            combinedString += characters[index];
+            characters.splice(index, 1);
+          }
+          for (let string of includedStrings) {
+            if (!combinedString.includes(string)) {
+              index = Math.floor(Math.random() * combinedString.length);
+              combinedString =
+                combinedString.slice(0, index) + string[0] + combinedString.slice(index + 1);
+              break;
             }
-            includedStrings.push(string);
           }
+          return combinedString.slice(0, length);
         }
-        if (length > characters.length) {
-          return combinedString;
+        
+        strings = ["!@#$%&?", "qwertyuiopasdfghjklzxcvbnm", "QWERTYUIOPASDFGHJKLZXCVBNM", "1234567890"];
+        console.log("Welcome to your (extremely basic) password generator!");
+        lengths = prompt("Enter the length of the password (press enter for 16): ");
+        amount = prompt("Enter the amount of passwords (press enter for 1):");
+        include = prompt("Include symbols? (y/n) (press enter for yes):");
+        if (amount) {
+          amount = parseInt(amount);
+        } else {
+          amount = 1;
         }
-        let index;
-        while (combinedString.length < length) {
-          index = Math.floor(Math.random() * characters.length);
-          combinedString += characters[index];
-          characters.splice(index, 1);
+        
+        for (let i = 0; i < amount; i++) {
+          combinedString = combineCharacters(strings);
+          console.log(combinedString);
+          document.getElementById('output').innerHTML = combinedString;
+          
+          navigator.clipboard.writeText(combinedString);
         }
-        for (let string of includedStrings) {
-          if (!combinedString.includes(string)) {
-            index = Math.floor(Math.random() * combinedString.length);
-            combinedString =
-              combinedString.slice(0, index) + string[0] + combinedString.slice(index + 1);
-            break;
-          }
-        }
-        return combinedString.slice(0, length);
+        document.getElementById('Copied').innerHTML = "Copied last password to clipboard. To view all generated passwords you can find them in the console";
+        console.log("Copied last password to clipboard");
+        document.getElementById('button').innerHTML = "Generate a new password";
       }
-      
-      document.querySelector("#passwordForm").addEventListener("submit", event => {
-        event.preventDefault();
-        const form = event.target;
-        const length = form.elements.length.value;
-        const amount = form.elements.amount.value;
-        const include = form.elements.include.value;
-        let passwords = "";
-                for (let i = 0; i < amount; i++) {
-          combinedString = combineCharacters(strings, length, include);
-          passwords += combinedString + "<br>";
-        }
-        document.querySelector("#output").innerHTML = passwords;
-      });
     </script>
   </body>
 </html>

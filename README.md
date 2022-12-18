@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/passwordgen/passwordgen.github.io">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/favicon.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Passgen</h3>
@@ -176,7 +176,7 @@ Project Link: [https://github.com/passwordgen/passwordgen.github.io](https://git
 [license-url]: https://github.com/passwordgen/passwordgen.github.io/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/example.mp4
 [Next.js]: https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
 [Next-url]: https://www.javascript.com/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB

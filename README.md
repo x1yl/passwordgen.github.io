@@ -103,8 +103,6 @@ For more examples, please refer to the [Documentation](https://www.passwordgen.g
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Change from input prompt to dropdowns/text boxes
-
 See the [open issues](https://github.com/passwordgen/passwordgen.github.io/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

@@ -1,0 +1,26 @@
+form.password {
+    display: table;
+}
+
+div.form {
+    display: table-row;
+}
+
+label.length {
+    padding-right: 10px;
+}
+label.symbols {
+    padding-right: 2px;
+}
+input.length {
+	width: 50px;
+}
+body {
+  font: "Comic Sans", "Times New Roman", sans-serif;
+  width: 250px;
+  height: 130px;
+}
+.welcome {
+	padding-bottom: 5px;
+    font: 20px "Comic Sans", "Times New Roman", sans-serif;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Password Generator</title>
+    <link href="popup.css" rel="stylesheet" media="screen"/>
+</head>
+  <body id="body">
+    <div class="welcome">Welcome to your passgen!</div>
+    <form action="" method="get" class="password">
+        <div class="form">
+            <label for="length" class="length">Length (default 16): </label>
+            <input type="text" name="length" id="length" class="length">
+        </div>
+        <div class="form">
+            <label for="Symbols" class="symbols">Symbols: </label>
+            <input type="checkbox" id="Symbols" name="Symbols">
+        </div>
+        <div class="form">
+            <button type="button" id="button">Generate password</button>
+        </div>
+    </form>
+    <div id="output"></div>
+    <div id="Copied"></div>
+    <script src="popup.js"></script>
+</body></html>
+
+
+

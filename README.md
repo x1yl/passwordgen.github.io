@@ -76,7 +76,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is a password generator originally written in python then converted to javascript using ChatGPT. The html frontend was created by me.
+This is a password generator originally written in python then converted to javascript using ChatGPT. The html frontend and css was created by me.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -86,6 +86,7 @@ This is a password generator originally written in python then converted to java
 
 * [![Next][Next.js]][Next-url]
 * ![Deploy](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
+* ![Deploy](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

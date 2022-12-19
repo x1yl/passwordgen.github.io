@@ -76,7 +76,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is a password generator originally written in python then converted to javascript using ChatGPT. The html frontend and css was created by me.
+This is a password generator originally written in python then converted to javascript using ChatGPT. The html frontend and css was created by me. Check out the extenstion version <a href="https://github.com/passwordgen/passgen">here</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -93,9 +93,9 @@ This is a password generator originally written in python then converted to java
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-https://user-images.githubusercontent.com/120960344/208321096-7043f71a-f113-4eea-b7a4-dfe37e12f5f4.mp4
+https://user-images.githubusercontent.com/120960344/208522724-17df16bf-16d8-4387-9ce5-999c0908de37.mp4
 
-For more examples, please refer to the [Documentation](https://www.passwordgen.github.io/docs/)
+For more examples, please refer to the [Documentation](https://github.com/passwordgen/passwordgen.github.io)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

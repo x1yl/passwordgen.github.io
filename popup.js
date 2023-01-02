@@ -52,7 +52,7 @@ function generate(){
     return combinedString.slice(0, length);
   }
   
-  strings = ["!@#$%&?", "qwertyuiopasdfghjklzxcvbnm", "QWERTYUIOPASDFGHJKLZXCVBNM", "1234567890"];
+  strings = ["!@#$%&?!@#$%&?!@#$%&?", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm", "QWERTYUIOPASDFGHJKLZXCVBNMQWERTYUIOPASDFGHJKLZXCVBNMQWERTYUIOPASDFGHJKLZXCVBNM", "123456789012345678901234567890"];
   amount = 1;
   for (let i = 0; i < amount; i++) {
     combinedString = combineCharacters(strings);
